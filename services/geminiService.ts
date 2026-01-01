@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || 'FAKE_API_KEY_FOR_DEVELOPMENT' });
 
 export const analyzeLotImage = async (base64Image: string): Promise<string> => {
   try {
@@ -18,15 +18,15 @@ export const analyzeLotImage = async (base64Image: string): Promise<string> => {
             }
           },
           {
-            text: 'Analise esta imagem de um item de leilão. Forneça uma descrição curta e objetiva (máximo 2 frases) sobre o que é o item, condição aparente e características visuais principais. Responda em Português do Brasil.'
+            text: 'Analise esta imagem de um item de leilÃ£o. ForneÃ§a uma descriÃ§Ã£o curta e objetiva (mÃ¡ximo 2 frases) sobre o que Ã© o item, condiÃ§Ã£o aparente e caracterÃ­sticas visuais principais. Responda em PortuguÃªs do Brasil.'
           }
         ]
       }
     });
 
-    return response.text || "Não foi possível analisar a imagem.";
+    return response.text || "NÃ£o foi possÃ­vel analisar a imagem.";
   } catch (error) {
     console.error("Erro ao analisar imagem com Gemini:", error);
-    return "Erro ao conectar com a IA para análise.";
+    return "Erro ao conectar com a IA para anÃ¡lise.";
   }
 };
